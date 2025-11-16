@@ -106,12 +106,20 @@ public class DeliveryApp {
         int choice = Integer.parseInt(scanner.nextLine());
         switch (choice) {
             case 1:
-                standardParcelsBox.getAllParcels();
+                for (StandardParcel p :standardParcelsBox.getAllParcels()){
+                    System.out.println(p.getDescription());
+                }
                 break;
             case 2:
-                perishableParcelBox.getAllParcels();
+                for (PerishableParcel p :perishableParcelBox.getAllParcels()){
+                    System.out.println(p.getDescription());
+                }
+                break;
             case 3:
-                fragileParcelsBox.getAllParcels();
+                for (FragileParcel p :fragileParcelsBox.getAllParcels()){
+                    System.out.println(p.getDescription());
+                }
+                break;
             default:
                 System.out.println("Поссылок с таким типом не было добавлено");
         }

@@ -21,14 +21,15 @@ public class ParcelBox <T extends Parcel>{
         }
     }
 
-    public void getAllParcels(){
-        System.out.println("В коробке находятся следующие поссылки");
-        for (T parcel : parcelBox){
-            System.out.println(parcel.getDescription());
-        }
+
+
+    public List<T> getAllParcels(){
+        return parcelBox;
     }
 
+    //Используется только в тестах
     public void clearBox(){
         parcelBox.clear();
+        maxAvailableWeight = 10;
     }
 }

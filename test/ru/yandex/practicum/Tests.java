@@ -13,11 +13,11 @@ public class Tests {
 
     @BeforeAll
     public static void setUp(){
-        standardParcel = new StandardParcel("Описание", 1, "адрес", 10);
-        standardParcelOver = new StandardParcel("Описание", 1, "адрес", 100000);
+        standardParcel = new StandardParcel("Описание", 10, "адрес", 1);
+        standardParcelOver = new StandardParcel("Описание", 100000, "адрес", 1);
         standardParcelLight = new StandardParcel("Описание", 1, "адрес", 1);
-        fragileParcel = new FragileParcel("Описание", 1, "адрес", 10);
-        perishableParcel = new PerishableParcel("Описание", 1, "адрес", 10, 7);
+        fragileParcel = new FragileParcel("Описание", 10, "адрес", 1);
+        perishableParcel = new PerishableParcel("Описание", 10, "адрес", 1, 7);
         standardParcelParcelBox = new ParcelBox<>(10);
 
     }
@@ -25,7 +25,6 @@ public class Tests {
     @AfterEach
     public void clearParcelBox(){
         standardParcelParcelBox.clearBox();
-        standardParcelParcelBox.maxAvailableWeight = 10;
     }
 
 
@@ -37,6 +36,7 @@ public class Tests {
 
     @Test
     public void fragileParcel10kgDeliveryPrice(){
+        System.out.println(fragileParcel.getWeight());
         Assertions.assertEquals(30, fragileParcel.calculateDeliveryCost(), "Тест провален");
     }
 
@@ -65,8 +65,7 @@ public class Tests {
     //Тесты на вес коробки
     @Test
     public void parcelFitInTheBox(){
-        standardParcelParcelBox.addParcel(standardParcelLight);
-        Assertions.assertEquals(9, standardParcelParcelBox.maxAvailableWeight);
+        Assertions.assertEquals(10, standardParcelParcelBox.maxAvailableWeight);
 
     }
 

@@ -6,23 +6,17 @@ import java.util.List;
 
 public abstract class Parcel {
 
-    private String description;
-    private Integer weight;
-    private String deliveryAddress;
-    private Integer sendDay;
-
-    //Базовая стоимость единицы отправления
-    //private final static List<Integer> basePrice = new ArrayList<>(Arrays.asList(2, 3, 4));
-    //private static Integer basePrice;
+    protected String description;
+    protected Integer weight;
+    protected String deliveryAddress;
+    protected Integer sendDay;
 
 
-
-
-    public Parcel(String description, Integer sendDay, String deliveryAddress, Integer weight) {
+    public Parcel(String description, Integer weight, String deliveryAddress,Integer sendDay) {
         this.description = description;
-        this.sendDay = sendDay;
-        this.deliveryAddress = deliveryAddress;
         this.weight = weight;
+        this.deliveryAddress = deliveryAddress;
+        this.sendDay = sendDay;
     }
 
     public void packageItem(){
@@ -33,7 +27,7 @@ public abstract class Parcel {
         System.out.println("Посылка <<"+description+">> доставлена по адресу "+deliveryAddress);
     }
 
-    public abstract Integer calculateDeliveryCost();
+    //public abstract Integer calculateDeliveryCost();
     //Getters
     public String getDescription() {
         return description;
@@ -49,5 +43,13 @@ public abstract class Parcel {
 
     public Integer getSendDay() {
         return sendDay;
+    }
+
+
+    protected abstract Integer getBasePrice();
+
+    public Integer calculateDeliveryCost() {
+        //System.out.println("Weight: " + weight + ", BasePrice: " + getBasePrice());
+        return weight * getBasePrice();
     }
 }
